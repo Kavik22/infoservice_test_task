@@ -1,21 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/app.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    const csrfToken = '{{ csrf_token() }}';
-  </script>
-  <script src="{{ asset('js/changeStatus.js') }}"></script>
-  <title>Лиды</title>
-</head>
-
-<body>
+@section('content')
+<div class="toForm">
   <div class="d-flex justify-content-center gap-3 mb-3">
     @foreach ($statuses as $status)
     <div class="card">
@@ -55,12 +41,12 @@
         </select>
         </td>
         <td>
-        <div class="d-flex justify-content-between gap-3">
+        <div class="d-flex gap-3">
           <a href="{{ route('info.edit', $lead->id) }}" class="btn btn-primary">Редактировать</a>
           <form action="{{ route('info.delete', $lead->id) }}" method="post">
           @csrf
           @method('delete')
-          <input type="submit" class="btn btn-danger" value="Удалить">
+          <input type="submit" class="btn btn-danger h-auto" value="Удалить">
           </form>
         </div>
         </td>
@@ -69,6 +55,10 @@
       </tbody>
     </table>
   </div>
-</body>
-
-</html>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    const csrfToken = '{{ csrf_token() }}';
+  </script>
+  <script src="{{ asset('js/changeStatus.js') }}"></script>
+  @endsection
+</div>
